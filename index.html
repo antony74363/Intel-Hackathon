@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Landing Page</title>
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="header-content">
+            <span class="material-symbols-outlined">
+                spa <img src="" alt="" id="header-img" aria-hidden="true">
+            </span>
+            <nav class="nav" id="nav-bar">
+                <a href="#beneficios" class="nav-link">Advantages</a>
+                <a href="#testimonios" class="nav-link">Diseases</a>
+                <a href="#comprar" class="nav-link">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <div class="hero">
+        <div class="hero-content wrapper">
+            <div class="hero-details">
+                <h1 class="hero-title">Get well, <br>Stay well <br><span>With our AI</span></h1>
+            </div>
+            <div class="hero-img">
+                <img class="hero-image" src="assets/main-img.png" alt="">
+            </div>
+        </div>
+    </div>
+    <main>
+        <section class="we">
+            <div class="we-content">
+                <h2>What is our website about?</h2>
+                <p>Welcome to our AI-powered health prediction platform, where you can input your health data to receive instant, accurate predictions about potential diseases. Using cutting-edge machine learning models, we analyze your health report to help you understand possible risks, empowering you to take proactive steps for better health outcomes.</p>
+            </div>
+        </section>
+        <section class="beneficios" id="beneficios">
+            <h2 class="beneficios-title">Advantages</h2>
+            <div class="beneficios-content wrapper">
+                <div class="beneficios-beneficio">
+                    <span class="material-symbols-outlined">
+                        child_care
+                    </span>
+                    <p>Simple and user-friendly<br> interface</p>
+                </div>
+                <div class="beneficios-beneficio">
+                    <span class="material-symbols-outlined">
+                        star_half
+                    </span>
+                    <p>Fast and accesible <br></p>
+                </div>
+                <div class="beneficios-beneficio">
+                    <span class="material-symbols-outlined">
+                        water_drop
+                    </span>
+                    <p>Accurate and effective<br> predictions</p>
+                </div>
+            </div>
+        </section>
+        <section class="testimonios" id="testimonios">
+            <h2 class="testimonios-title">Diagonsis For the following diseases</h2>
+            <div class="testimonios-content wrapper">
+                <div class="testimonio">
+                    <a href="heart.html"><p class="testimonio-text">Heart Disease Diagonosis</p></a>
+                    <!-- <p class="testimonio-autor">Ana G. de 42 años</p> -->
+                </div>
+                <div class="testimonio">
+                    <a href="parkinson.html"><p class="testimonio-text">Parkinsons Disease          </p></a>
+                    <!-- <p class="testimonio-autor">Javier M. de 35 años.</p> -->
+                </div>
+                <div class="testimonio">
+                    <a href="diabetes.html"><p class="testimonio-text">Diabetes         </p></a>
+                    <!-- <p class="testimonio-autor">Ana G. de 42 años</p> -->
+                </div>
+            </div>
+        </section>
+        <section class="buy" id="comprar">
+            <div class="buy-content wrapper">
+                <h2>¡Transforma tu piel hoy!</h2>
+                <p>Compra Ahora y obtén un 10% de descuento en tu primera compra.</p>
+                <form class="form" action="https://www.freecodecamp.com/email-submit" id="form" method="post">
+                    <input name="email" type="email" id="email" placeholder="Ingresa tu email" required>
+                    <input type="submit" value="Enviar" id="submit">
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
