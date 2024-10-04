@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Diagnosis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> <!-- TensorFlow.js -->
+</head>
+<body>
+    <h1>Heart Disease Diagnosis</h1>
+    <form id="heartForm">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label for="cholesterol">Cholesterol Level:</label>
+        <input type="number" id="cholesterol" name="cholesterol" required><br><br>
+
+        <label for="bloodPressure">Blood Pressure:</label>
+        <input type="number" id="bloodPressure" name="bloodPressure" required><br><br>
+
+        <button type="button" id="predictHeartDisease">Predict</button>
+    </form>
+    <h3>Prediction Result: <span id="result"></span></h3>
+
+    <script src="heart.js"></script> <!-- Your custom JavaScript for heart disease -->
+</body>
+</html>
