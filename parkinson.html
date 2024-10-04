@@ -1,28 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkinson's Disease Diagnosis</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> <!-- TensorFlow.js -->
+    
+    <style>
+        /* Global styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Nunito", sans-serif;
+            font-size: 20px;
+            color: rgb(20, 20, 20);
+            background-color: #f5f5f5;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            padding: 0 16px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #141414;
+        }
+
+        h3 {
+            font-size: 28px;
+            color: #141414;
+        }
+
+        h1 span {
+            color: #B7E0FF;
+        }
+
+        @media screen and (max-width: 1200px) {
+            h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+        }
+
+        section {
+            padding: 96px 0;
+        }
+
+        /* Form styling */
+        .form-holder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            background: #B7E0FF;
+            padding: 24px;
+        }
+
+        .form-holder .form-content {
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-content h3 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .form-content label {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: rgb(20, 20, 20);
+        }
+
+        .form-content input[type=number] {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 18px;
+            border: 2px solid #B7E0FF;
+            border-radius: 8px;
+            background: #f9f9f9;
+            outline: none;
+        }
+
+        .form-content input[type=number]:focus {
+            border-color: #141414;
+        }
+
+        .btn-primary {
+            background-color: #B7E0FF;
+            color: #141414;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #9fc9e7;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .form-content {
+                padding: 20px;
+            }
+
+            h1, h3 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Parkinson's Disease Diagnosis</h1>
-    <form id="parkinsonForm">
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required><br><br>
+    <div class="form-holder">
+        <div class="form-content">
+            <h1>Parkinson's Disease <span>Diagnosis</span></h1>
+            <h3>Fill in the details below</h3>
 
-        <label for="tremorLevel">Tremor Level:</label>
-        <input type="number" id="tremorLevel" name="tremorLevel" required><br><br>
+            <form id="parkinsonForm">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
 
-        <label for="muscleStiffness">Muscle Stiffness:</label>
-        <input type="number" id="muscleStiffness" name="muscleStiffness" required><br><br>
+                <label for="tremorLevel">Tremor Level:</label>
+                <input type="number" id="tremorLevel" name="tremorLevel" required>
 
-        <button type="button" id="predictParkinsons">Predict</button>
-    </form>
-    <h3>Prediction Result: <span id="result"></span></h3>
+                <label for="muscleStiffness">Muscle Stiffness:</label>
+                <input type="number" id="muscleStiffness" name="muscleStiffness" required>
+
+                <button type="button" id="predictParkinsons" class="btn-primary">Predict</button>
+            </form>
+            <h3>Prediction Result: <span id="result"></span></h3>
+        </div>
+    </div>
 
     <script src="parkinson.js"></script> <!-- Your custom JavaScript for Parkinson's disease -->
 </body>
+
 </html>
