@@ -70,7 +70,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Contact
 For any inquiries or feedback, please reach out:
-
-Your Name
-Email: your.email@example.com
-GitHub: Your GitHub Profile
