@@ -2,7 +2,8 @@
 let parkinsonModel;
 
 async function loadParkinsonModel() {
-    parkinsonModel = await tf.loadLayersModel('path-to-parkinson-model/model.json');
+    // Update the path to point to the converted model.json file
+    parkinsonModel = await tf.loadLayersModel('E:/Hack/Intel-Hackathon/model'); // Absolute path to model.json
     console.log("Parkinson's disease model loaded successfully");
 }
 
@@ -14,8 +15,12 @@ document.getElementById('predictParkinsons').addEventListener('click', async () 
     const tremorLevel = parseFloat(document.getElementById('tremorLevel').value);
     const muscleStiffness = parseFloat(document.getElementById('muscleStiffness').value);
 
-    const inputTensor = tf.tensor2d([[age, tremorLevel, muscleStiffness]]); // Adjust based on your model's expected inputs
+    // Create the input tensor
+    const inputTensor = tf.tensor2d([[age, tremorLevel, muscleStiffness]]);
 
+    // Make prediction
     const prediction = await parkinsonModel.predict(inputTensor).data();
+
+    // Display the result
     document.getElementById('result').innerText = prediction[0].toFixed(2);
 });

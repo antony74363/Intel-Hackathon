@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Disease Diagnosis</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> <!-- TensorFlow.js -->
+    <title>Heart Disease Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     
     <style>
         /* Global styles */
@@ -138,18 +138,48 @@
 <body>
     <div class="form-holder">
         <div class="form-content">
-            <h1>Heart Disease <span>Diagnosis</span></h1>
+            <h1>Heart Disease <span>Prediction</span></h1>
             <h3>Fill in the details below</h3>
 
             <form id="heartForm">
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
+                <input type="number" id="age" name="age" placeholder="Enter age" required>
 
-                <label for="cholesterol">Cholesterol Level:</label>
-                <input type="number" id="cholesterol" name="cholesterol" required>
+                <label for="sex">Sex (1 = Male, 0 = Female):</label>
+                <input type="number" id="sex" name="sex" placeholder="Enter sex" required>
 
-                <label for="bloodPressure">Blood Pressure:</label>
-                <input type="number" id="bloodPressure" name="bloodPressure" required>
+                <label for="cp">Chest Pain Type (0-3):</label>
+                <input type="number" id="cp" name="cp" placeholder="Enter chest pain type" required>
+
+                <label for="trestbps">Resting Blood Pressure:</label>
+                <input type="number" id="trestbps" name="trestbps" placeholder="Enter resting blood pressure" required>
+
+                <label for="chol">Serum Cholesterol:</label>
+                <input type="number" id="chol" name="chol" placeholder="Enter serum cholesterol" required>
+
+                <label for="fbs">Fasting Blood Sugar (1 = True, 0 = False):</label>
+                <input type="number" id="fbs" name="fbs" placeholder="Enter fasting blood sugar" required>
+
+                <label for="restecg">Resting Electrocardiographic Results (0-2):</label>
+                <input type="number" id="restecg" name="restecg" placeholder="Enter resting ECG results" required>
+
+                <label for="thalach">Max Heart Rate Achieved:</label>
+                <input type="number" id="thalach" name="thalach" placeholder="Enter max heart rate achieved" required>
+
+                <label for="exang">Exercise Induced Angina (1 = Yes, 0 = No):</label>
+                <input type="number" id="exang" name="exang" placeholder="Enter exercise-induced angina" required>
+
+                <label for="oldpeak">ST Depression Induced by Exercise:</label>
+                <input type="number" id="oldpeak" name="oldpeak" placeholder="Enter ST depression" required>
+
+                <label for="slope">Slope of the Peak Exercise ST Segment (0-2):</label>
+                <input type="number" id="slope" name="slope" placeholder="Enter slope" required>
+
+                <label for="ca">Number of Major Vessels Colored by Fluoroscopy (0-4):</label>
+                <input type="number" id="ca" name="ca" placeholder="Enter number of vessels" required>
+
+                <label for="thal">Thalassemia (0 = Normal, 1 = Fixed defect, 2 = Reversible defect):</label>
+                <input type="number" id="thal" name="thal" placeholder="Enter thalassemia" required>
 
                 <button type="button" id="predictHeartDisease" class="btn-primary">Predict</button>
             </form>
@@ -157,7 +187,69 @@
         </div>
     </div>
 
-    <script src="heart.js"></script> <!-- Your custom JavaScript for heart disease -->
+    <script>
+        // Load the heart disease model
+        let heartModel;
+
+        async function loadHeartModel() {
+            try {
+                heartModel = await tf.loadLayersModel('E:\Hack\Intel-Hackathon\heart_disease_model.h5/model.json');
+                console.log("Model loaded successfully");
+            } catch (error) {
+                console.error("Error loading the model:", error);
+            }
+        }
+
+        loadHeartModel();  // Load the model on page load
+
+        // Handle prediction when the user clicks the Predict button
+        document.getElementById('predictHeartDisease').addEventListener('click', async () => {
+            try {
+                // Retrieve input values from the form
+                const age = parseFloat(document.getElementById('age').value);
+                const sex = parseFloat(document.getElementById('sex').value);
+                const cp = parseFloat(document.getElementById('cp').value);
+                const trestbps = parseFloat(document.getElementById('trestbps').value);
+                const chol = parseFloat(document.getElementById('chol').value);
+                const fbs = parseFloat(document.getElementById('fbs').value);
+                const restecg = parseFloat(document.getElementById('restecg').value);
+                const thalach = parseFloat(document.getElementById('thalach').value);
+                const exang = parseFloat(document.getElementById('exang').value);
+                const oldpeak = parseFloat(document.getElementById('oldpeak').value);
+                const slope = parseFloat(document.getElementById('slope').value);
+                const ca = parseFloat(document.getElementById('ca').value);
+                const thal = parseFloat(document.getElementById('thal').value);
+
+                // Validate input fields
+                if (isNaN(age) || isNaN(sex) || isNaN(cp) || isNaN(trestbps) || isNaN(chol) || isNaN(fbs) || 
+                    isNaN(restecg) || isNaN(thalach) || isNaN(exang) || isNaN(oldpeak) || isNaN(slope) || 
+                    isNaN(ca) || isNaN(thal)) {
+                    document.getElementById('result').innerText = "Please fill all fields with valid numbers.";
+                    return;
+                }
+
+                // Prepare input tensor in the shape expected by the model
+                const inputTensor = tf.tensor2d([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]]);
+
+                // Make prediction
+                const prediction = await heartModel.predict(inputTensor).data();
+
+                // Display result
+                const resultElement = document.getElementById('result');
+                if (prediction[0] < 0.5) {
+                    resultElement.innerText = "The Person does not have Heart Disease";
+                } else {
+                    resultElement.innerText = "The Person has Heart Disease";
+                }
+
+                // Clean up tensors
+                inputTensor.dispose();
+            } catch (error) {
+                console.error("Error during prediction:", error);
+                document.getElementById('result').innerText = "An error occurred during prediction.";
+            }
+        });
+    </script>
 </body>
 
 </html>
